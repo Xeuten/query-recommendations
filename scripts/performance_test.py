@@ -31,6 +31,7 @@ def send_request(query: str):
     response_times.append(elapsed_time)
 
 
+# This allows us to simulate concurrent users
 with ThreadPoolExecutor(max_workers=limit) as executor:
     futures = [executor.submit(send_request, query) for query in queries]
     for i, future in enumerate(as_completed(futures)):
